@@ -23,11 +23,18 @@ normalized_tweets = normalize(tweets)
 text_list_nltk = word_tokenize(normalized_tweets)
 
 
+text_without_punkt = []
+for word in text_list_nltk:
+    if word[0].isalpha(): # если в начале слова буква (а не знак препинания)
+        text_without_punkt.append(word)
+        
+        
+
 stop_words = stopwords.words('english')
 
 
 text_clean = []
-for word in text_list_nltk:
+for word in text_without_punkt:
     if word not in stop_words:
         text_clean.append(word)
 
